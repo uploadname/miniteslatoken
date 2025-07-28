@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎮</text></svg>">
+</head>
+<body>
+    <header class="header">
+        <div class="nav-container">
+            <a href="/" class="logo">CSGOEmpire</a>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="/" class="<%= page === 'home' ? 'active' : '' %>">Home</a></li>
+                    <li><a href="/roulette" class="<%= page === 'roulette' ? 'active' : '' %>">Roulette</a></li>
+                    <li><a href="/coinflip" class="<%= page === 'coinflip' ? 'active' : '' %>">Coinflip</a></li>
+                    <li><a href="/cases" class="<%= page === 'cases' ? 'active' : '' %>">Cases</a></li>
+                    <li><a href="/match-betting" class="<%= page === 'match-betting' ? 'active' : '' %>">Match Betting</a></li>
+                </ul>
+            </nav>
+            <div class="user-section">
+                <div class="balance">💰 $1,250.00</div>
+                <button class="login-btn" onclick="loginWithSteam()">Login with Steam</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <%- body %>
+    </main>
+
+    <!-- Live Chat -->
+    <div class="chat-container">
+        <div class="chat-header">
+            💬 Live Chat
+        </div>
+        <div class="chat-messages" id="chatMessages">
+            <div class="chat-message">
+                <strong>Player123:</strong> GL everyone! 🍀
+            </div>
+            <div class="chat-message">
+                <strong>CSGOPro:</strong> Just won big on roulette! 🎉
+            </div>
+            <div class="chat-message">
+                <strong>SkinHunter:</strong> Anyone up for coinflip?
+            </div>
+        </div>
+        <div class="chat-input">
+            <input type="text" placeholder="Type your message..." id="chatInput">
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#">Terms of Service</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Responsible Gambling</a>
+                <a href="#">Support</a>
+                <a href="#">FAQ</a>
+            </div>
+            <p>&copy; 2025 CSGOEmpire Clone. For educational purposes only. 18+ only.</p>
+            <p>Licensed by Curaçao Gaming Control Board</p>
+        </div>
+    </footer>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/main.js"></script>
+</body>
+</html>

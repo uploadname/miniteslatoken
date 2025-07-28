@@ -1,0 +1,240 @@
+<% 
+let body = `
+<div class="roulette-container">
+    <h1 style="text-align: center; margin-bottom: 2rem; color: #ff6b35;">🎰 Roulette</h1>
+    
+    <div class="game-info" style="text-align: center; margin-bottom: 2rem;">
+        <div style="display: inline-block; background: rgba(0,0,0,0.5); padding: 1rem 2rem; border-radius: 15px; margin: 0 1rem;">
+            <div style="font-size: 1.2rem; color: #ff6b35;">Time Left</div>
+            <div id="timeLeft" style="font-size: 2rem; font-weight: bold;">30s</div>
+        </div>
+        <div style="display: inline-block; background: rgba(0,0,0,0.5); padding: 1rem 2rem; border-radius: 15px; margin: 0 1rem;">
+            <div style="font-size: 1.2rem; color: #ff6b35;">Total Bets</div>
+            <div id="totalBets" style="font-size: 2rem; font-weight: bold;">$4,792</div>
+        </div>
+    </div>
+    
+    <div class="roulette-wheel">
+        <div class="roulette-pointer"></div>
+    </div>
+    
+    <div class="betting-section">
+        <div class="bet-option terrorist" onclick="selectBet('T')">
+            <div style="font-size: 3rem; margin-bottom: 1rem;">🔴</div>
+            <h3>Terrorist</h3>
+            <div style="font-size: 1.2rem; color: #ff6b35; font-weight: bold;">x2.0</div>
+            <div id="tBets" style="margin-top: 0.5rem; opacity: 0.8;">$1,247</div>
+        </div>
+        
+        <div class="bet-option counter-terrorist" onclick="selectBet('CT')">
+            <div style="font-size: 3rem; margin-bottom: 1rem;">🔵</div>
+            <h3>Counter-Terrorist</h3>
+            <div style="font-size: 1.2rem; color: #4a90e2; font-weight: bold;">x2.0</div>
+            <div id="ctBets" style="margin-top: 0.5rem; opacity: 0.8;">$1,892</div>
+        </div>
+        
+        <div class="bet-option empire" onclick="selectBet('E')">
+            <div style="font-size: 3rem; margin-bottom: 1rem;">👑</div>
+            <h3>Empire</h3>
+            <div style="font-size: 1.2rem; color: #28a745; font-weight: bold;">x14.0</div>
+            <div id="eBets" style="margin-top: 0.5rem; opacity: 0.8;">$653</div>
+        </div>
+    </div>
+    
+    <div class="bet-controls" style="text-align: center; margin: 2rem 0;">
+        <div style="margin-bottom: 1rem;">
+            <label style="color: #ff6b35; font-weight: bold;">Bet Amount:</label>
+            <input type="number" id="betAmount" value="10" min="1" max="1000" 
+                   style="margin: 0 1rem; padding: 0.5rem; border-radius: 5px; border: none; background: rgba(255,255,255,0.1); color: white; width: 100px;">
+            <span style="color: #4a90e2;">Empire Coins</span>
+        </div>
+        <div style="margin-bottom: 1rem;">
+            <button onclick="setBetAmount(1)" style="margin: 0 0.5rem; padding: 0.5rem 1rem; background: rgba(255,255,255,0.1); border: none; color: white; border-radius: 5px; cursor: pointer;">$1</button>
+            <button onclick="setBetAmount(10)" style="margin: 0 0.5rem; padding: 0.5rem 1rem; background: rgba(255,255,255,0.1); border: none; color: white; border-radius: 5px; cursor: pointer;">$10</button>
+            <button onclick="setBetAmount(50)" style="margin: 0 0.5rem; padding: 0.5rem 1rem; background: rgba(255,255,255,0.1); border: none; color: white; border-radius: 5px; cursor: pointer;">$50</button>
+            <button onclick="setBetAmount(100)" style="margin: 0 0.5rem; padding: 0.5rem 1rem; background: rgba(255,255,255,0.1); border: none; color: white; border-radius: 5px; cursor: pointer;">$100</button>
+        </div>
+        <button id="placeBetBtn" onclick="placeBet()" disabled 
+                style="background: linear-gradient(45deg, #ff6b35, #f7931e); color: white; border: none; padding: 1rem 2rem; border-radius: 25px; cursor: pointer; font-weight: bold; font-size: 1.1rem;">
+            Place Bet
+        </button>
+    </div>
+    
+    <div class="recent-results" style="text-align: center; margin: 3rem 0;">
+        <h3 style="color: #ff6b35; margin-bottom: 1rem;">Recent Results</h3>
+        <div style="display: flex; justify-content: center; gap: 0.5rem; flex-wrap: wrap;">
+            <div class="result-item" style="width: 40px; height: 40px; border-radius: 50%; background: #ff6b35; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">T</div>
+            <div class="result-item" style="width: 40px; height: 40px; border-radius: 50%; background: #4a90e2; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">CT</div>
+            <div class="result-item" style="width: 40px; height: 40px; border-radius: 50%; background: #ff6b35; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">T</div>
+            <div class="result-item" style="width: 40px; height: 40px; border-radius: 50%; background: #28a745; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">E</div>
+            <div class="result-item" style="width: 40px; height: 40px; border-radius: 50%; background: #4a90e2; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">CT</div>
+            <div class="result-item" style="width: 40px; height: 40px; border-radius: 50%; background: #ff6b35; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">T</div>
+            <div class="result-item" style="width: 40px; height: 40px; border-radius: 50%; background: #ff6b35; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">T</div>
+            <div class="result-item" style="width: 40px; height: 40px; border-radius: 50%; background: #4a90e2; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">CT</div>
+        </div>
+    </div>
+    
+    <div class="current-bets" style="margin: 3rem 0;">
+        <h3 style="color: #ff6b35; margin-bottom: 1rem; text-align: center;">Current Round Bets</h3>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+            <div style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 10px;">
+                <h4 style="color: #ff6b35; margin-bottom: 0.5rem;">Terrorist Bets</h4>
+                <div style="max-height: 200px; overflow-y: auto;">
+                    <div style="display: flex; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px solid rgba(255,255,255,0.1);">
+                        <span>Player123</span>
+                        <span style="color: #ff6b35;">$25</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px solid rgba(255,255,255,0.1);">
+                        <span>CSGOPro</span>
+                        <span style="color: #ff6b35;">$150</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px solid rgba(255,255,255,0.1);">
+                        <span>SkinHunter</span>
+                        <span style="color: #ff6b35;">$75</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 10px;">
+                <h4 style="color: #4a90e2; margin-bottom: 0.5rem;">Counter-Terrorist Bets</h4>
+                <div style="max-height: 200px; overflow-y: auto;">
+                    <div style="display: flex; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px solid rgba(255,255,255,0.1);">
+                        <span>GamerGirl</span>
+                        <span style="color: #4a90e2;">$100</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px solid rgba(255,255,255,0.1);">
+                        <span>ProPlayer</span>
+                        <span style="color: #4a90e2;">$200</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 10px;">
+                <h4 style="color: #28a745; margin-bottom: 0.5rem;">Empire Bets</h4>
+                <div style="max-height: 200px; overflow-y: auto;">
+                    <div style="display: flex; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px solid rgba(255,255,255,0.1);">
+                        <span>LuckyPlayer</span>
+                        <span style="color: #28a745;">$50</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+let selectedBet = null;
+let gameSocket = null;
+
+// Initialize socket connection
+if (typeof io !== 'undefined') {
+    gameSocket = io();
+    gameSocket.emit('join-roulette');
+    
+    gameSocket.on('roulette-result', (data) => {
+        showResult(data.result);
+    });
+    
+    gameSocket.on('new-bet', (data) => {
+        updateBetDisplay(data);
+    });
+}
+
+function selectBet(bet) {
+    selectedBet = bet;
+    document.getElementById('placeBetBtn').disabled = false;
+    
+    // Update visual selection
+    document.querySelectorAll('.bet-option').forEach(option => {
+        option.style.border = '2px solid transparent';
+    });
+    
+    const selectedOption = document.querySelector('.bet-option.' + 
+        (bet === 'T' ? 'terrorist' : bet === 'CT' ? 'counter-terrorist' : 'empire'));
+    selectedOption.style.border = '2px solid #ff6b35';
+}
+
+function setBetAmount(amount) {
+    document.getElementById('betAmount').value = amount;
+}
+
+function placeBet() {
+    if (!selectedBet) {
+        alert('Please select a betting option first!');
+        return;
+    }
+    
+    const amount = document.getElementById('betAmount').value;
+    if (amount < 1) {
+        alert('Minimum bet is $1');
+        return;
+    }
+    
+    if (gameSocket) {
+        gameSocket.emit('place-bet', {
+            bet: selectedBet,
+            amount: parseFloat(amount),
+            player: 'You'
+        });
+    }
+    
+    alert('Bet placed: $' + amount + ' on ' + selectedBet);
+    document.getElementById('placeBetBtn').disabled = true;
+}
+
+function showResult(result) {
+    const colors = {
+        'T': '#ff6b35',
+        'CT': '#4a90e2',
+        'E': '#28a745'
+    };
+    
+    // Show result animation
+    const resultDiv = document.createElement('div');
+    resultDiv.style.cssText = \`
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: \${colors[result]};
+        color: white;
+        padding: 2rem 4rem;
+        border-radius: 15px;
+        font-size: 3rem;
+        font-weight: bold;
+        z-index: 10000;
+        animation: fadeInOut 3s ease-in-out;
+    \`;
+    resultDiv.textContent = result === 'T' ? 'Terrorist Wins!' : 
+                           result === 'CT' ? 'Counter-Terrorist Wins!' : 
+                           'Empire Wins!';
+    
+    document.body.appendChild(resultDiv);
+    
+    setTimeout(() => {
+        document.body.removeChild(resultDiv);
+    }, 3000);
+}
+
+// Countdown timer
+let timeLeft = 30;
+setInterval(() => {
+    timeLeft--;
+    if (timeLeft <= 0) {
+        timeLeft = 30;
+    }
+    document.getElementById('timeLeft').textContent = timeLeft + 's';
+}, 1000);
+</script>
+
+<style>
+@keyframes fadeInOut {
+    0% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
+    50% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    100% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
+}
+</style>
+`;
+%>
+
+<%- include('layout', { body: body, title: title, page: page }) %>

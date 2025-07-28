@@ -1,0 +1,101 @@
+<% 
+let body = `
+<div class="hero-section fade-in-up">
+    <h1 class="hero-title">Welcome to CSGOEmpire</h1>
+    <p class="hero-subtitle">The most trusted CS2 skin gambling platform with instant deposits and fast withdrawals</p>
+    <div style="margin-top: 2rem;">
+        <button class="play-btn" onclick="window.location.href='/roulette'">Start Playing Now</button>
+    </div>
+</div>
+
+<div class="games-grid">
+    <div class="game-card fade-in-up">
+        <div class="game-icon">🎰</div>
+        <h3 class="game-title">Roulette</h3>
+        <p class="game-description">Bet on Terrorist, Counter-Terrorist, or Empire logos. Classic roulette with CS2 theme and x2 or x14 payouts.</p>
+        <a href="/roulette" class="play-btn">Play Roulette</a>
+    </div>
+    
+    <div class="game-card fade-in-up">
+        <div class="game-icon">🪙</div>
+        <h3 class="game-title">Coinflip</h3>
+        <p class="game-description">Challenge other players in head-to-head coinflip battles. Choose your side and double your skins!</p>
+        <a href="/coinflip" class="play-btn">Play Coinflip</a>
+    </div>
+    
+    <div class="game-card fade-in-up">
+        <div class="game-icon">📦</div>
+        <h3 class="game-title">Cases</h3>
+        <p class="game-description">Open CS2 cases and win rare weapon skins and knife skins. Try your luck with our case collection!</p>
+        <a href="/cases" class="play-btn">Open Cases</a>
+    </div>
+    
+    <div class="game-card fade-in-up">
+        <div class="game-icon">⚔️</div>
+        <h3 class="game-title">Case Battles</h3>
+        <p class="game-description">Battle other players by opening cases simultaneously. Winner takes all the skins!</p>
+        <a href="/cases" class="play-btn">Join Battle</a>
+    </div>
+    
+    <div class="game-card fade-in-up">
+        <div class="game-icon">🏆</div>
+        <h3 class="game-title">Match Betting</h3>
+        <p class="game-description">Bet on professional CS2, Dota 2, Valorant matches and traditional sports. Competitive odds!</p>
+        <a href="/match-betting" class="play-btn">View Matches</a>
+    </div>
+    
+    <div class="game-card fade-in-up">
+        <div class="game-icon">🎁</div>
+        <h3 class="game-title">Daily Rewards</h3>
+        <p class="game-description">Get free daily cases, level up your account, and earn Empire Coins. Join our rewards program!</p>
+        <a href="#" class="play-btn">Claim Rewards</a>
+    </div>
+</div>
+
+<div class="features-section" style="text-align: center; margin: 4rem 0;">
+    <h2 style="font-size: 2.5rem; margin-bottom: 2rem; color: #ff6b35;">Why Choose CSGOEmpire?</h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; max-width: 1000px; margin: 0 auto;">
+        <div style="padding: 2rem; background: rgba(255, 255, 255, 0.05); border-radius: 15px;">
+            <h3 style="color: #ff6b35; margin-bottom: 1rem;">🔒 Secure & Licensed</h3>
+            <p>Licensed by Curaçao Gaming Control Board with SSL encryption and KYC verification.</p>
+        </div>
+        <div style="padding: 2rem; background: rgba(255, 255, 255, 0.05); border-radius: 15px;">
+            <h3 style="color: #ff6b35; margin-bottom: 1rem;">⚡ Instant Deposits</h3>
+            <p>Deposit CS2 skins, cryptocurrency, or traditional payment methods instantly.</p>
+        </div>
+        <div style="padding: 2rem; background: rgba(255, 255, 255, 0.05); border-radius: 15px;">
+            <h3 style="color: #ff6b35; margin-bottom: 1rem;">🚀 Fast Withdrawals</h3>
+            <p>Quick payouts in skins or crypto with transparent withdrawal terms.</p>
+        </div>
+        <div style="padding: 2rem; background: rgba(255, 255, 255, 0.05); border-radius: 15px;">
+            <h3 style="color: #ff6b35; margin-bottom: 1rem;">🎮 Provably Fair</h3>
+            <p>All games use provably fair algorithms. Verify results yourself!</p>
+        </div>
+    </div>
+</div>
+
+<div class="stats-section" style="background: rgba(0, 0, 0, 0.3); padding: 3rem; border-radius: 15px; text-align: center; margin: 3rem 0;">
+    <h2 style="margin-bottom: 2rem; color: #ff6b35;">Live Statistics</h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem;">
+        <div>
+            <div style="font-size: 2rem; font-weight: bold; color: #28a745;">$2,847,392</div>
+            <div style="opacity: 0.8;">Total Wagered Today</div>
+        </div>
+        <div>
+            <div style="font-size: 2rem; font-weight: bold; color: #4a90e2;">1,247</div>
+            <div style="opacity: 0.8;">Players Online</div>
+        </div>
+        <div>
+            <div style="font-size: 2rem; font-weight: bold; color: #ff6b35;">$18,492</div>
+            <div style="opacity: 0.8;">Biggest Win Today</div>
+        </div>
+        <div>
+            <div style="font-size: 2rem; font-weight: bold; color: #f7931e;">847,291</div>
+            <div style="opacity: 0.8;">Games Played</div>
+        </div>
+    </div>
+</div>
+`;
+%>
+
+<%- include('layout', { body: body, title: title, page: page }) %>

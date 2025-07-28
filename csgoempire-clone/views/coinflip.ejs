@@ -1,0 +1,241 @@
+<% 
+let body = `
+<div class="coinflip-container" style="max-width: 1200px; margin: 0 auto; padding: 2rem;">
+    <h1 style="text-align: center; margin-bottom: 2rem; color: #ff6b35;">🪙 Coinflip</h1>
+    
+    <div class="coinflip-games" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; margin-bottom: 3rem;">
+        <div class="coinflip-game active" style="background: linear-gradient(145deg, #2c2c54, #40407a); border-radius: 15px; padding: 2rem; border: 2px solid #ff6b35;">
+            <div class="game-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <div style="color: #ff6b35; font-weight: bold;">Game #1247</div>
+                <div style="color: #28a745; font-weight: bold;">$50.00</div>
+            </div>
+            
+            <div class="coin-animation" style="text-align: center; margin: 2rem 0;">
+                <div class="coin" style="width: 100px; height: 100px; background: linear-gradient(45deg, #ffd700, #ffed4e); border-radius: 50%; margin: 0 auto; display: flex; align-items: center; justify-content: center; font-size: 2rem; animation: coinFlip 2s infinite;">
+                    🪙
+                </div>
+            </div>
+            
+            <div class="players" style="display: flex; justify-content: space-between; margin: 1rem 0;">
+                <div class="player" style="text-align: center; flex: 1;">
+                    <div style="width: 60px; height: 60px; background: #ff6b35; border-radius: 50%; margin: 0 auto 0.5rem; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">T</div>
+                    <div style="font-weight: bold;">Player123</div>
+                    <div style="opacity: 0.8;">$50.00</div>
+                </div>
+                <div class="vs" style="display: flex; align-items: center; font-size: 1.5rem; font-weight: bold; color: #ff6b35;">VS</div>
+                <div class="player waiting" style="text-align: center; flex: 1;">
+                    <div style="width: 60px; height: 60px; background: #4a90e2; border-radius: 50%; margin: 0 auto 0.5rem; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">CT</div>
+                    <div style="font-weight: bold;">Waiting...</div>
+                    <div style="opacity: 0.8;">$50.00</div>
+                </div>
+            </div>
+            
+            <button onclick="joinCoinflip(1247, 'CT')" style="width: 100%; background: linear-gradient(45deg, #4a90e2, #2196f3); color: white; border: none; padding: 1rem; border-radius: 10px; font-weight: bold; cursor: pointer; margin-top: 1rem;">
+                Join as Counter-Terrorist
+            </button>
+        </div>
+        
+        <div class="coinflip-game" style="background: linear-gradient(145deg, #2c2c54, #40407a); border-radius: 15px; padding: 2rem; border: 1px solid rgba(255,255,255,0.1);">
+            <div class="game-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <div style="color: #ff6b35; font-weight: bold;">Game #1248</div>
+                <div style="color: #28a745; font-weight: bold;">$25.00</div>
+            </div>
+            
+            <div class="coin-animation" style="text-align: center; margin: 2rem 0;">
+                <div class="coin" style="width: 100px; height: 100px; background: linear-gradient(45deg, #ffd700, #ffed4e); border-radius: 50%; margin: 0 auto; display: flex; align-items: center; justify-content: center; font-size: 2rem;">
+                    🪙
+                </div>
+            </div>
+            
+            <div class="players" style="display: flex; justify-content: space-between; margin: 1rem 0;">
+                <div class="player" style="text-align: center; flex: 1;">
+                    <div style="width: 60px; height: 60px; background: #4a90e2; border-radius: 50%; margin: 0 auto 0.5rem; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">CT</div>
+                    <div style="font-weight: bold;">CSGOPro</div>
+                    <div style="opacity: 0.8;">$25.00</div>
+                </div>
+                <div class="vs" style="display: flex; align-items: center; font-size: 1.5rem; font-weight: bold; color: #ff6b35;">VS</div>
+                <div class="player waiting" style="text-align: center; flex: 1;">
+                    <div style="width: 60px; height: 60px; background: #ff6b35; border-radius: 50%; margin: 0 auto 0.5rem; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">T</div>
+                    <div style="font-weight: bold;">Waiting...</div>
+                    <div style="opacity: 0.8;">$25.00</div>
+                </div>
+            </div>
+            
+            <button onclick="joinCoinflip(1248, 'T')" style="width: 100%; background: linear-gradient(45deg, #ff6b35, #f7931e); color: white; border: none; padding: 1rem; border-radius: 10px; font-weight: bold; cursor: pointer; margin-top: 1rem;">
+                Join as Terrorist
+            </button>
+        </div>
+        
+        <div class="coinflip-game completed" style="background: linear-gradient(145deg, #1a1a2e, #2c2c54); border-radius: 15px; padding: 2rem; border: 1px solid rgba(40, 167, 69, 0.3); opacity: 0.7;">
+            <div class="game-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <div style="color: #ff6b35; font-weight: bold;">Game #1246</div>
+                <div style="color: #28a745; font-weight: bold;">$100.00</div>
+            </div>
+            
+            <div class="coin-animation" style="text-align: center; margin: 2rem 0;">
+                <div class="coin" style="width: 100px; height: 100px; background: linear-gradient(45deg, #28a745, #20c997); border-radius: 50%; margin: 0 auto; display: flex; align-items: center; justify-content: center; font-size: 2rem;">
+                    ✅
+                </div>
+            </div>
+            
+            <div class="players" style="display: flex; justify-content: space-between; margin: 1rem 0;">
+                <div class="player winner" style="text-align: center; flex: 1; position: relative;">
+                    <div style="width: 60px; height: 60px; background: #ff6b35; border-radius: 50%; margin: 0 auto 0.5rem; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; box-shadow: 0 0 20px rgba(255, 107, 53, 0.5);">T</div>
+                    <div style="font-weight: bold; color: #28a745;">SkinHunter</div>
+                    <div style="opacity: 0.8;">Won $200.00</div>
+                    <div style="position: absolute; top: -10px; right: -10px; background: #28a745; color: white; border-radius: 50%; width: 25px; height: 25px; display: flex; align-items: center; justify-content: center; font-size: 0.8rem;">👑</div>
+                </div>
+                <div class="vs" style="display: flex; align-items: center; font-size: 1.5rem; font-weight: bold; color: #666;">VS</div>
+                <div class="player loser" style="text-align: center; flex: 1;">
+                    <div style="width: 60px; height: 60px; background: #4a90e2; border-radius: 50%; margin: 0 auto 0.5rem; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; opacity: 0.5;">CT</div>
+                    <div style="font-weight: bold; opacity: 0.5;">ProGamer</div>
+                    <div style="opacity: 0.5;">Lost $100.00</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="create-game-section" style="text-align: center; margin: 3rem 0; padding: 2rem; background: rgba(0,0,0,0.3); border-radius: 15px;">
+        <h2 style="color: #ff6b35; margin-bottom: 2rem;">Create New Coinflip Game</h2>
+        
+        <div style="margin-bottom: 2rem;">
+            <label style="color: #ff6b35; font-weight: bold; display: block; margin-bottom: 0.5rem;">Choose Your Side:</label>
+            <div style="display: flex; justify-content: center; gap: 2rem; margin-bottom: 2rem;">
+                <div class="side-option" onclick="selectSide('T')" style="background: linear-gradient(145deg, #2c2c54, #40407a); padding: 1.5rem; border-radius: 15px; cursor: pointer; border: 2px solid transparent; transition: all 0.3s ease;">
+                    <div style="width: 80px; height: 80px; background: #ff6b35; border-radius: 50%; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem; font-weight: bold;">T</div>
+                    <div style="font-weight: bold;">Terrorist</div>
+                </div>
+                <div class="side-option" onclick="selectSide('CT')" style="background: linear-gradient(145deg, #2c2c54, #40407a); padding: 1.5rem; border-radius: 15px; cursor: pointer; border: 2px solid transparent; transition: all 0.3s ease;">
+                    <div style="width: 80px; height: 80px; background: #4a90e2; border-radius: 50%; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem; font-weight: bold;">CT</div>
+                    <div style="font-weight: bold;">Counter-Terrorist</div>
+                </div>
+            </div>
+        </div>
+        
+        <div style="margin-bottom: 2rem;">
+            <label style="color: #ff6b35; font-weight: bold; display: block; margin-bottom: 0.5rem;">Bet Amount:</label>
+            <input type="number" id="coinflipAmount" value="50" min="1" max="1000" 
+                   style="padding: 1rem; border-radius: 10px; border: none; background: rgba(255,255,255,0.1); color: white; width: 200px; text-align: center; font-size: 1.2rem;">
+            <div style="margin-top: 1rem;">
+                <button onclick="setCoinflipAmount(10)" style="margin: 0 0.5rem; padding: 0.5rem 1rem; background: rgba(255,255,255,0.1); border: none; color: white; border-radius: 5px; cursor: pointer;">$10</button>
+                <button onclick="setCoinflipAmount(25)" style="margin: 0 0.5rem; padding: 0.5rem 1rem; background: rgba(255,255,255,0.1); border: none; color: white; border-radius: 5px; cursor: pointer;">$25</button>
+                <button onclick="setCoinflipAmount(50)" style="margin: 0 0.5rem; padding: 0.5rem 1rem; background: rgba(255,255,255,0.1); border: none; color: white; border-radius: 5px; cursor: pointer;">$50</button>
+                <button onclick="setCoinflipAmount(100)" style="margin: 0 0.5rem; padding: 0.5rem 1rem; background: rgba(255,255,255,0.1); border: none; color: white; border-radius: 5px; cursor: pointer;">$100</button>
+            </div>
+        </div>
+        
+        <button id="createGameBtn" onclick="createCoinflipGame()" disabled 
+                style="background: linear-gradient(45deg, #ff6b35, #f7931e); color: white; border: none; padding: 1.5rem 3rem; border-radius: 25px; cursor: pointer; font-weight: bold; font-size: 1.2rem;">
+            Create Game
+        </button>
+    </div>
+    
+    <div class="recent-games" style="margin: 3rem 0;">
+        <h3 style="color: #ff6b35; margin-bottom: 1rem; text-align: center;">Recent Coinflip Results</h3>
+        <div style="background: rgba(0,0,0,0.3); border-radius: 15px; padding: 1rem; max-height: 300px; overflow-y: auto;">
+            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 1rem; padding: 0.5rem; border-bottom: 1px solid rgba(255,255,255,0.1); font-weight: bold; opacity: 0.7;">
+                <div>Game ID</div>
+                <div>Winner</div>
+                <div>Amount</div>
+                <div>Side</div>
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 1rem; padding: 0.5rem; border-bottom: 1px solid rgba(255,255,255,0.1);">
+                <div>#1246</div>
+                <div style="color: #28a745;">SkinHunter</div>
+                <div>$200.00</div>
+                <div style="color: #ff6b35;">Terrorist</div>
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 1rem; padding: 0.5rem; border-bottom: 1px solid rgba(255,255,255,0.1);">
+                <div>#1245</div>
+                <div style="color: #28a745;">GamerGirl</div>
+                <div>$150.00</div>
+                <div style="color: #4a90e2;">Counter-Terrorist</div>
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 1rem; padding: 0.5rem; border-bottom: 1px solid rgba(255,255,255,0.1);">
+                <div>#1244</div>
+                <div style="color: #28a745;">CSGOLegend</div>
+                <div>$75.00</div>
+                <div style="color: #ff6b35;">Terrorist</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+let selectedSide = null;
+
+function selectSide(side) {
+    selectedSide = side;
+    document.getElementById('createGameBtn').disabled = false;
+    
+    // Update visual selection
+    document.querySelectorAll('.side-option').forEach(option => {
+        option.style.border = '2px solid transparent';
+    });
+    
+    event.target.closest('.side-option').style.border = '2px solid #ff6b35';
+}
+
+function setCoinflipAmount(amount) {
+    document.getElementById('coinflipAmount').value = amount;
+}
+
+function createCoinflipGame() {
+    if (!selectedSide) {
+        alert('Please select a side first!');
+        return;
+    }
+    
+    const amount = document.getElementById('coinflipAmount').value;
+    if (amount < 1) {
+        alert('Minimum bet is $1');
+        return;
+    }
+    
+    alert('Coinflip game created! Waiting for opponent...');
+    
+    // In a real implementation, this would create a new game via socket
+    if (typeof socket !== 'undefined' && socket) {
+        socket.emit('create-coinflip', {
+            side: selectedSide,
+            amount: parseFloat(amount),
+            player: 'You'
+        });
+    }
+}
+
+function joinCoinflip(gameId, side) {
+    alert('Joined coinflip game #' + gameId + ' as ' + side);
+    
+    // In a real implementation, this would join the game and start the flip
+    if (typeof socket !== 'undefined' && socket) {
+        socket.emit('join-coinflip', {
+            gameId: gameId,
+            side: side,
+            player: 'You'
+        });
+    }
+}
+</script>
+
+<style>
+@keyframes coinFlip {
+    0% { transform: rotateY(0deg); }
+    50% { transform: rotateY(180deg); }
+    100% { transform: rotateY(360deg); }
+}
+
+.side-option:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
+
+.coinflip-game:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+}
+</style>
+`;
+%>
+
+<%- include('layout', { body: body, title: title, page: page }) %>

@@ -1,0 +1,278 @@
+<% 
+let body = `
+<div class="cases-container" style="max-width: 1200px; margin: 0 auto; padding: 2rem;">
+    <h1 style="text-align: center; margin-bottom: 2rem; color: #ff6b35;">📦 Cases</h1>
+    
+    <div class="cases-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-bottom: 3rem;">
+        <div class="case-item" style="background: linear-gradient(145deg, #2c2c54, #40407a); border-radius: 15px; padding: 2rem; text-align: center; border: 1px solid rgba(255,255,255,0.1); transition: all 0.3s ease;">
+            <div class="case-image" style="width: 120px; height: 120px; background: linear-gradient(45deg, #ff6b35, #f7931e); border-radius: 15px; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center; font-size: 3rem;">
+                📦
+            </div>
+            <h3 style="color: #ff6b35; margin-bottom: 0.5rem;">Empire Case</h3>
+            <p style="opacity: 0.8; margin-bottom: 1rem; font-size: 0.9rem;">Contains rare CS2 skins including knives and rifles</p>
+            <div style="color: #28a745; font-weight: bold; font-size: 1.2rem; margin-bottom: 1rem;">$2.50</div>
+            <button onclick="openCase('empire')" style="width: 100%; background: linear-gradient(45deg, #ff6b35, #f7931e); color: white; border: none; padding: 1rem; border-radius: 10px; font-weight: bold; cursor: pointer;">
+                Open Case
+            </button>
+        </div>
+        
+        <div class="case-item" style="background: linear-gradient(145deg, #2c2c54, #40407a); border-radius: 15px; padding: 2rem; text-align: center; border: 1px solid rgba(255,255,255,0.1); transition: all 0.3s ease;">
+            <div class="case-image" style="width: 120px; height: 120px; background: linear-gradient(45deg, #4a90e2, #2196f3); border-radius: 15px; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center; font-size: 3rem;">
+                🎁
+            </div>
+            <h3 style="color: #4a90e2; margin-bottom: 0.5rem;">Premium Case</h3>
+            <p style="opacity: 0.8; margin-bottom: 1rem; font-size: 0.9rem;">High-tier skins with better odds for rare items</p>
+            <div style="color: #28a745; font-weight: bold; font-size: 1.2rem; margin-bottom: 1rem;">$5.00</div>
+            <button onclick="openCase('premium')" style="width: 100%; background: linear-gradient(45deg, #4a90e2, #2196f3); color: white; border: none; padding: 1rem; border-radius: 10px; font-weight: bold; cursor: pointer;">
+                Open Case
+            </button>
+        </div>
+        
+        <div class="case-item" style="background: linear-gradient(145deg, #2c2c54, #40407a); border-radius: 15px; padding: 2rem; text-align: center; border: 1px solid rgba(255,255,255,0.1); transition: all 0.3s ease;">
+            <div class="case-image" style="width: 120px; height: 120px; background: linear-gradient(45deg, #ffd700, #ffed4e); border-radius: 15px; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center; font-size: 3rem;">
+                💎
+            </div>
+            <h3 style="color: #ffd700; margin-bottom: 0.5rem;">Diamond Case</h3>
+            <p style="opacity: 0.8; margin-bottom: 1rem; font-size: 0.9rem;">Exclusive case with guaranteed rare skins</p>
+            <div style="color: #28a745; font-weight: bold; font-size: 1.2rem; margin-bottom: 1rem;">$10.00</div>
+            <button onclick="openCase('diamond')" style="width: 100%; background: linear-gradient(45deg, #ffd700, #ffed4e); color: #1a1a2e; border: none; padding: 1rem; border-radius: 10px; font-weight: bold; cursor: pointer;">
+                Open Case
+            </button>
+        </div>
+        
+        <div class="case-item" style="background: linear-gradient(145deg, #2c2c54, #40407a); border-radius: 15px; padding: 2rem; text-align: center; border: 1px solid rgba(255,255,255,0.1); transition: all 0.3s ease;">
+            <div class="case-image" style="width: 120px; height: 120px; background: linear-gradient(45deg, #28a745, #20c997); border-radius: 15px; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center; font-size: 3rem;">
+                🏆
+            </div>
+            <h3 style="color: #28a745; margin-bottom: 0.5rem;">Champion Case</h3>
+            <p style="opacity: 0.8; margin-bottom: 1rem; font-size: 0.9rem;">Tournament-grade skins from major championships</p>
+            <div style="color: #28a745; font-weight: bold; font-size: 1.2rem; margin-bottom: 1rem;">$7.50</div>
+            <button onclick="openCase('champion')" style="width: 100%; background: linear-gradient(45deg, #28a745, #20c997); color: white; border: none; padding: 1rem; border-radius: 10px; font-weight: bold; cursor: pointer;">
+                Open Case
+            </button>
+        </div>
+        
+        <div class="case-item" style="background: linear-gradient(145deg, #2c2c54, #40407a); border-radius: 15px; padding: 2rem; text-align: center; border: 1px solid rgba(255,255,255,0.1); transition: all 0.3s ease;">
+            <div class="case-image" style="width: 120px; height: 120px; background: linear-gradient(45deg, #e74c3c, #c0392b); border-radius: 15px; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center; font-size: 3rem;">
+                🔥
+            </div>
+            <h3 style="color: #e74c3c; margin-bottom: 0.5rem;">Fire Case</h3>
+            <p style="opacity: 0.8; margin-bottom: 1rem; font-size: 0.9rem;">Hot skins with fire-themed designs</p>
+            <div style="color: #28a745; font-weight: bold; font-size: 1.2rem; margin-bottom: 1rem;">$3.75</div>
+            <button onclick="openCase('fire')" style="width: 100%; background: linear-gradient(45deg, #e74c3c, #c0392b); color: white; border: none; padding: 1rem; border-radius: 10px; font-weight: bold; cursor: pointer;">
+                Open Case
+            </button>
+        </div>
+        
+        <div class="case-item" style="background: linear-gradient(145deg, #2c2c54, #40407a); border-radius: 15px; padding: 2rem; text-align: center; border: 1px solid rgba(255,255,255,0.1); transition: all 0.3s ease;">
+            <div class="case-image" style="width: 120px; height: 120px; background: linear-gradient(45deg, #9b59b6, #8e44ad); border-radius: 15px; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center; font-size: 3rem;">
+                🌟
+            </div>
+            <h3 style="color: #9b59b6; margin-bottom: 0.5rem;">Mystic Case</h3>
+            <p style="opacity: 0.8; margin-bottom: 1rem; font-size: 0.9rem;">Mysterious skins with unique patterns</p>
+            <div style="color: #28a745; font-weight: bold; font-size: 1.2rem; margin-bottom: 1rem;">$6.25</div>
+            <button onclick="openCase('mystic')" style="width: 100%; background: linear-gradient(45deg, #9b59b6, #8e44ad); color: white; border: none; padding: 1rem; border-radius: 10px; font-weight: bold; cursor: pointer;">
+                Open Case
+            </button>
+        </div>
+    </div>
+    
+    <!-- Case Opening Animation -->
+    <div id="caseOpeningModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 10000; display: flex; align-items: center; justify-content: center;">
+        <div class="opening-container" style="text-align: center; color: white;">
+            <h2 style="color: #ff6b35; margin-bottom: 2rem;">Opening Case...</h2>
+            <div class="case-animation" style="width: 200px; height: 200px; background: linear-gradient(45deg, #ff6b35, #f7931e); border-radius: 15px; margin: 0 auto 2rem; display: flex; align-items: center; justify-content: center; font-size: 4rem; animation: caseShake 0.5s infinite;">
+                📦
+            </div>
+            <div class="progress-bar" style="width: 300px; height: 10px; background: rgba(255,255,255,0.2); border-radius: 5px; margin: 0 auto; overflow: hidden;">
+                <div class="progress-fill" style="height: 100%; background: linear-gradient(45deg, #ff6b35, #f7931e); width: 0%; animation: progressFill 3s ease-in-out;"></div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Result Modal -->
+    <div id="resultModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 10000; display: flex; align-items: center; justify-content: center;">
+        <div class="result-container" style="text-align: center; color: white; background: linear-gradient(145deg, #2c2c54, #40407a); padding: 3rem; border-radius: 20px; border: 2px solid #ff6b35;">
+            <h2 style="color: #ff6b35; margin-bottom: 2rem;">You Won!</h2>
+            <div id="wonSkin" style="width: 150px; height: 150px; background: linear-gradient(45deg, #28a745, #20c997); border-radius: 15px; margin: 0 auto 2rem; display: flex; align-items: center; justify-content: center; font-size: 3rem;">
+                🔫
+            </div>
+            <h3 id="skinName" style="color: #28a745; margin-bottom: 1rem;">AK-47 | Redline</h3>
+            <div id="skinValue" style="font-size: 1.5rem; color: #ffd700; font-weight: bold; margin-bottom: 2rem;">$45.50</div>
+            <div style="display: flex; gap: 1rem; justify-content: center;">
+                <button onclick="sellSkin()" style="background: linear-gradient(45deg, #28a745, #20c997); color: white; border: none; padding: 1rem 2rem; border-radius: 10px; cursor: pointer; font-weight: bold;">
+                    Sell for Empire Coins
+                </button>
+                <button onclick="closeModal()" style="background: linear-gradient(45deg, #ff6b35, #f7931e); color: white; border: none; padding: 1rem 2rem; border-radius: 10px; cursor: pointer; font-weight: bold;">
+                    Keep Skin
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="case-battles-section" style="margin: 4rem 0; padding: 2rem; background: rgba(0,0,0,0.3); border-radius: 15px;">
+        <h2 style="color: #ff6b35; text-align: center; margin-bottom: 2rem;">⚔️ Case Battles</h2>
+        <p style="text-align: center; opacity: 0.8; margin-bottom: 2rem;">Challenge other players to case opening battles. Winner takes all!</p>
+        
+        <div class="battle-options" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem;">
+            <div class="battle-option" style="background: linear-gradient(145deg, #2c2c54, #40407a); padding: 2rem; border-radius: 15px; text-align: center;">
+                <h3 style="color: #ff6b35; margin-bottom: 1rem;">1v1 Battle</h3>
+                <p style="opacity: 0.8; margin-bottom: 1rem;">Head-to-head case battle</p>
+                <div style="color: #28a745; font-weight: bold; margin-bottom: 1rem;">$10 - $500</div>
+                <button onclick="createBattle('1v1')" style="width: 100%; background: linear-gradient(45deg, #ff6b35, #f7931e); color: white; border: none; padding: 1rem; border-radius: 10px; font-weight: bold; cursor: pointer;">
+                    Create Battle
+                </button>
+            </div>
+            
+            <div class="battle-option" style="background: linear-gradient(145deg, #2c2c54, #40407a); padding: 2rem; border-radius: 15px; text-align: center;">
+                <h3 style="color: #4a90e2; margin-bottom: 1rem;">2v2 Battle</h3>
+                <p style="opacity: 0.8; margin-bottom: 1rem;">Team case battle</p>
+                <div style="color: #28a745; font-weight: bold; margin-bottom: 1rem;">$20 - $1000</div>
+                <button onclick="createBattle('2v2')" style="width: 100%; background: linear-gradient(45deg, #4a90e2, #2196f3); color: white; border: none; padding: 1rem; border-radius: 10px; font-weight: bold; cursor: pointer;">
+                    Create Battle
+                </button>
+            </div>
+            
+            <div class="battle-option" style="background: linear-gradient(145deg, #2c2c54, #40407a); padding: 2rem; border-radius: 15px; text-align: center;">
+                <h3 style="color: #28a745; margin-bottom: 1rem;">Group Battle</h3>
+                <p style="opacity: 0.8; margin-bottom: 1rem;">Multi-player battle royale</p>
+                <div style="color: #28a745; font-weight: bold; margin-bottom: 1rem;">$5 - $250</div>
+                <button onclick="createBattle('group')" style="width: 100%; background: linear-gradient(45deg, #28a745, #20c997); color: white; border: none; padding: 1rem; border-radius: 10px; font-weight: bold; cursor: pointer;">
+                    Create Battle
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="recent-drops" style="margin: 3rem 0;">
+        <h3 style="color: #ff6b35; margin-bottom: 1rem; text-align: center;">Recent Drops</h3>
+        <div style="background: rgba(0,0,0,0.3); border-radius: 15px; padding: 1rem; max-height: 300px; overflow-y: auto;">
+            <div style="display: flex; justify-content: space-between; padding: 0.5rem; border-bottom: 1px solid rgba(255,255,255,0.1);">
+                <span><strong>Player123</strong> unboxed <span style="color: #e74c3c;">AWP | Dragon Lore</span></span>
+                <span style="color: #28a745;">$2,847.50</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; padding: 0.5rem; border-bottom: 1px solid rgba(255,255,255,0.1);">
+                <span><strong>CSGOPro</strong> unboxed <span style="color: #ffd700;">Karambit | Fade</span></span>
+                <span style="color: #28a745;">$1,245.00</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; padding: 0.5rem; border-bottom: 1px solid rgba(255,255,255,0.1);">
+                <span><strong>SkinHunter</strong> unboxed <span style="color: #9b59b6;">AK-47 | Redline</span></span>
+                <span style="color: #28a745;">$45.50</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; padding: 0.5rem; border-bottom: 1px solid rgba(255,255,255,0.1);">
+                <span><strong>GamerGirl</strong> unboxed <span style="color: #4a90e2;">M4A4 | Howl</span></span>
+                <span style="color: #28a745;">$892.75</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+const skins = {
+    empire: [
+        { name: 'AK-47 | Redline', value: 45.50, rarity: 'rare', emoji: '🔫' },
+        { name: 'AWP | Lightning Strike', value: 125.00, rarity: 'epic', emoji: '⚡' },
+        { name: 'Karambit | Fade', value: 1245.00, rarity: 'legendary', emoji: '🗡️' },
+        { name: 'Glock-18 | Water Elemental', value: 12.50, rarity: 'common', emoji: '🔫' },
+        { name: 'M4A4 | Howl', value: 892.75, rarity: 'epic', emoji: '🔥' }
+    ],
+    premium: [
+        { name: 'AWP | Dragon Lore', value: 2847.50, rarity: 'legendary', emoji: '🐉' },
+        { name: 'Butterfly Knife | Doppler', value: 1567.25, rarity: 'legendary', emoji: '🦋' },
+        { name: 'AK-47 | Fire Serpent', value: 456.75, rarity: 'epic', emoji: '🐍' }
+    ],
+    diamond: [
+        { name: 'Karambit | Crimson Web', value: 3245.00, rarity: 'legendary', emoji: '🕷️' },
+        { name: 'AWP | Medusa', value: 2156.50, rarity: 'legendary', emoji: '🐍' },
+        { name: 'M4A4 | Poseidon', value: 789.25, rarity: 'epic', emoji: '🔱' }
+    ]
+};
+
+function openCase(caseType) {
+    // Show opening animation
+    document.getElementById('caseOpeningModal').style.display = 'flex';
+    
+    // Simulate case opening delay
+    setTimeout(() => {
+        document.getElementById('caseOpeningModal').style.display = 'none';
+        showResult(caseType);
+    }, 3000);
+}
+
+function showResult(caseType) {
+    const caseItems = skins[caseType] || skins.empire;
+    const wonSkin = caseItems[Math.floor(Math.random() * caseItems.length)];
+    
+    document.getElementById('wonSkin').textContent = wonSkin.emoji;
+    document.getElementById('skinName').textContent = wonSkin.name;
+    document.getElementById('skinValue').textContent = '$' + wonSkin.value.toFixed(2);
+    
+    // Set rarity color
+    const rarityColors = {
+        common: '#4a90e2',
+        rare: '#9b59b6',
+        epic: '#e74c3c',
+        legendary: '#ffd700'
+    };
+    
+    document.getElementById('wonSkin').style.background = 
+        'linear-gradient(45deg, ' + rarityColors[wonSkin.rarity] + ', ' + rarityColors[wonSkin.rarity] + '88)';
+    
+    document.getElementById('resultModal').style.display = 'flex';
+}
+
+function sellSkin() {
+    alert('Skin sold! Empire Coins added to your balance.');
+    closeModal();
+}
+
+function closeModal() {
+    document.getElementById('resultModal').style.display = 'none';
+}
+
+function createBattle(type) {
+    alert('Creating ' + type + ' case battle... (Feature coming soon!)');
+}
+
+// Add hover effects
+document.querySelectorAll('.case-item').forEach(item => {
+    item.addEventListener('mouseenter', function() {
+        this.style.transform = 'translateY(-10px)';
+        this.style.boxShadow = '0 20px 40px rgba(0,0,0,0.3)';
+        this.style.borderColor = '#ff6b35';
+    });
+    
+    item.addEventListener('mouseleave', function() {
+        this.style.transform = 'translateY(0)';
+        this.style.boxShadow = 'none';
+        this.style.borderColor = 'rgba(255,255,255,0.1)';
+    });
+});
+</script>
+
+<style>
+@keyframes caseShake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+@keyframes progressFill {
+    0% { width: 0%; }
+    100% { width: 100%; }
+}
+
+.case-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+}
+
+.battle-option:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+}
+</style>
+`;
+%>
+
+<%- include('layout', { body: body, title: title, page: page }) %>
